@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Support Ticket Chat</h3>
+  <input id="msg" placeholder="Type a message" />
+  <button onclick="sendMessage()">Send</button>
+  <ul id="chat"></ul>
+
+  <script>
+    const ticketId = 1;
+    const senderId = 5; // replace with your user ID
+    const socket = new WebSocket(`ws://localhost:8000/ws/support/${ticketId}`);
+
+    socket.onmessage = function (event) {
+      const msg = JSON.parse(event.data);
+      const li = document.createElement("li");
+      li.textContent = `[${msg.timestamp}] User ${msg.sender_id}: ${msg.message}`;
+      document.getElementById("chat").appendChild(li);
+    };
+
+    function sendMessage() {
+      const input = document.getElementById("msg");
+      const message = input.value;
+      socket.send(JSON.stringify({ message, sender_id: senderId }));
+      input.value = "";
+    }
+  </script>
+</body>
+</html>

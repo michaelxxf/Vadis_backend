@@ -1,0 +1,17 @@
+alembic
+fastapi
+uvicorn
+pymysql
+sqlalchemy
+pydantic
+python-jose
+passlib[bcrypt]
+pydantic[email]
+transformers
+torch
+huggingface_hub[hf_xet]
+requests
+bs4
+python-socketio
+aiofiles
+WebSocket
