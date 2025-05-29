@@ -21,5 +21,6 @@ class User(Base):
     is_verified = Column(Boolean, default=False)
     license_id = Column(String(100), nullable=True)
     created_at = Column(DateTime, default=func.now())
+    
     tickets = relationship("SupportTicket", back_populates="user", cascade="all, delete-orphan")
 

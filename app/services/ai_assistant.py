@@ -4,7 +4,7 @@ from app.models.drugs import Drug
 import requests
 from bs4 import BeautifulSoup
 
-qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
+qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad", local_files_only= True)
 
 def recommend_related_drugs(db: Session, current_drug: Drug, limit=3):
     # Similar composition or category (assuming these fields exist)

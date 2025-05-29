@@ -1,13 +1,23 @@
 from fastapi import FastAPI
 from app.db.session import engine
+from fastapi.security import OAuth2PasswordBearer
 from app.models import users, drugs, inventory, order_item, support, order  # Add others when ready
 from app.routes import auth_routes, drug_routes, inventory_routes, user_routes, ai_routes, order_routes, support_routes # Add others when ready
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 from app.db.base import Base
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or specific frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup():

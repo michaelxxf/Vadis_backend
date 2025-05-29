@@ -13,7 +13,7 @@ router = APIRouter(prefix="/support", tags=["Support"])
 
 @router.post("/tickets", response_model=SupportTicketResponse)
 def create_ticket(ticket_data: SupportTicketCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    ticket = models.SupportTicket(subject=ticket_data.subject, user_id=user.id)
+    ticket = SupportTicket(subject=ticket_data.subject, user_id=user.id)
     db.add(ticket)
     db.commit()
     db.refresh(ticket)

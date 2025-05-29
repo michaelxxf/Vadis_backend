@@ -11,7 +11,7 @@ class SupportMessageCreate(SupportMessageBase):
 class SupportMessageResponse(SupportMessageBase):
     id: int
     sender_id: int
-    timestamp: datetime
+    created_at: datetime
 
     class Config:
         orm_mode = True
